@@ -38,7 +38,7 @@ define ssl::self_signed_certificate (
   # basename for key and certificate
   $basename="${directory}/${name}"
 
-  file { $directory: ensure => directory }
+  ensure_resource('file', $directory, { ensure => directory })
 
   # create configuration file
   file {"${basename}.cnf":
