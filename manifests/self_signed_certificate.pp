@@ -37,7 +37,7 @@
 #   *Optional* (defaults to undef)
 #
 # [*subject_alt_name*]
-#   SubjectAltName in certificate, e.g. for wildcard 
+#   SubjectAltName in certificate, e.g. for wildcard
 #   set to 'DNS:..., DNS:..., ...'
 #   *Optional* (defaults to undef)
 #
