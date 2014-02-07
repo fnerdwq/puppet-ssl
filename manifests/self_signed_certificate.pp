@@ -45,6 +45,7 @@ define ssl::self_signed_certificate (
     content => template('ssl/cert.cnf.erb'),
     owner   => $owner,
     group   => $group,
+    require => File[$directory],
     notify  => Exec["create certificate ${name}.crt"],
   }
 
