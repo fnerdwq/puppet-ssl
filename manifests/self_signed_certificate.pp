@@ -53,6 +53,7 @@ define ssl::self_signed_certificate (
   exec {"create private key ${name}.key":
     command => "openssl genrsa -out ${basename}.key",
     creates => "${basename}.key",
+    require => File["${basename}.cnf"], # not really need, but for ordering
     before  => File["${basename}.key"],
     notify  => Exec["create certificate ${name}.crt"]
   }
