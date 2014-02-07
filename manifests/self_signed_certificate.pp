@@ -1,4 +1,75 @@
-# generates a self sigend ssl certificate
+# == Define: ssl:self_sigend_certificate
+#
+# This define creates a self_sigend certificate.
+# No deeper configuration possible yet.
+#
+# This works on Debian and RedHat like systems.
+# Puppet Version >= 3.4.0
+#
+# === Parameters
+#
+# [*common_name*]
+#   Common name for certificate.
+#   *Optional* (defaults to $::fqdn)
+#
+# [*email_address*]
+#   Email address for certificate.
+#   *Optional* (defaults to undef)
+#
+# [*country*]
+#   Country in certificate.
+#   *Optional* (defaults to undef)
+#
+# [*state*]
+#   State in certificate.
+#   *Optional* (defaults to undef)
+#
+# [*locality*]
+#   Locality in certificate.
+#   *Optional* (defaults to undef)
+#
+# [*organization*]
+#   Organization in certificate.
+#   *Optional* (defaults to undef)
+#
+# [*unit*]
+#   Organizational unit in certificate.
+#   *Optional* (defaults to undef)
+#
+# [*subject_alt_name*]
+#   SubjectAltName in certificate, e.g. for wildcard 
+#   set to 'DNS:..., DNS:..., ...'
+#   *Optional* (defaults to undef)
+#
+# [*days*]
+#   Days of validity.
+#   *Optional* (defaults to 365)
+#
+# [*directory*]
+#   Were to put the resulting files.
+#   *Optional* (defaults to /etc/ssl)
+#
+# [*owner*]
+#   Owner of files.
+#   *Optional* (defaults to root)
+#
+# [*group*]
+#   Group of files.
+#   *Optional* (defaults to root)
+#
+#
+# === Examples
+#
+# ssl::self_signed_certificate{ $::fqdn: }
+#
+# === Authors
+#
+# Frederik Wagner <wagner@wagit.de>
+#
+# === Copyright
+#
+# Copyright 2014 Frederik Wagner
+#
 define ssl::self_signed_certificate (
   $common_name      = $::fqdn,
   $email_address    = undef,
@@ -9,7 +80,7 @@ define ssl::self_signed_certificate (
   $unit             = undef,
   $subject_alt_name = undef,
   $days             = 365,
-  $directory        = '/tmp',
+  $directory        = '/etc/ssl',
   $owner            = root,
   $group            = root,
 ) {
