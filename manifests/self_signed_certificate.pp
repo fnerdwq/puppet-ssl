@@ -1,4 +1,4 @@
-# == Define: ssl:self_sigend_certificate
+# == Define: ssl::self_sigend_certificate
 #
 # This define creates a self_sigend certificate.
 # No deeper configuration possible yet.
