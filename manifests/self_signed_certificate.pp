@@ -127,7 +127,7 @@ define ssl::self_signed_certificate (
 
   # create private key
   exec {"create private key ${name}.key":
-    command => "openssl genrsa -out ${basename}.key",
+    command => "openssl genrsa -out ${basename}.key ${numbits}",
     creates => "${basename}.key",
     require => File["${basename}.cnf"], # not really need, but for ordering
     before  => File["${basename}.key"],
