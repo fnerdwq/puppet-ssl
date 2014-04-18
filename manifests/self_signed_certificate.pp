@@ -8,6 +8,10 @@
 #
 # === Parameters
 #
+# [*numbits*]
+#   Bits for private RSA key.
+#   *Optional* (defaults to 2048)
+#
 # [*common_name*]
 #   Common name for certificate.
 #   *Optional* (defaults to $::fqdn)
@@ -71,6 +75,7 @@
 # Copyright 2014 Frederik Wagner
 #
 define ssl::self_signed_certificate (
+  $numbits          = '2048',
   $common_name      = $::fqdn,
   $email_address    = undef,
   $country          = undef,
