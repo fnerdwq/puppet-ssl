@@ -21,7 +21,7 @@
 #   *Optional* (defaults to undef)
 #
 # [*country*]
-#   Country in certificate.
+#   Country in certificate. Must be empty or 2 character long.
 #   *Optional* (defaults to undef)
 #
 # [*state*]
@@ -94,7 +94,7 @@ define ssl::self_signed_certificate (
     fail('$common_name must be a domain name!')
   }
   validate_string($email_address)
-  validate_string($country)
+  validate_re($country,'^(|[a-zA-Z]{2})$')
   validate_string($state)
   validate_string($locality)
   validate_string($organization)

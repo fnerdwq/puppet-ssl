@@ -44,8 +44,14 @@ class ssl (
 
   $fqdn_split = split($::fqdn,'\.')
 
-  $country       = upcase($fqdn_split[-1])
-  $organization  = $fqdn_split[-2]
+  # take last part as country (only works for 2 lettered TLDs)
+  if member(['COM','ORG'], upcase($fqdn_split[-1])) {
+    $country = 'US' 
+  } else {
+    $country = upcase($fqdn_split[-1])
+  }
+  # take second part to be organization (such that .co.uk etc work as well)
+  $organization  = $fqdn_split[1]
   $email_address = "root@${::domain}"
 
   if str2bool($wildcard) {
