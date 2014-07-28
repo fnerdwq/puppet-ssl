@@ -5,7 +5,15 @@ describe 'ssl' do
 
     it { should contain_ssl__self_signed_certificate('testhost.example.de') }
 
+    context 'with parameter cert_name => "otherhost.example2.de"' do
+      let(:params) { { 'cert_name' => 'otherhost.example2.de' } }
 
+      it { 
+        should contain_ssl__self_signed_certificate('otherhost.example2.de').with(
+          'email_address' => 'root@example2.de'
+        )
+      }
+    end
 
     context 'node with long FQDN "testhost.example.co.uk"' do
       let(:node) { 'testhost.example.co.uk' }
@@ -22,3 +30,4 @@ describe 'ssl' do
       }
     end
 end
+

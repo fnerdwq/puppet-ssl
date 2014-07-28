@@ -34,7 +34,7 @@
 # Copyright 2014 Frederik Wagner
 #
 class ssl (
-  $cert_name = $::fqnd,
+  $cert_name = $::fqdn,
   $directory = '/tmp',
   $wildcard  = false,
 ) {
@@ -42,22 +42,23 @@ class ssl (
   validate_string($cert_name)
   validate_absolute_path($directory)
 
-  $fqdn_split = split($::fqdn,'\.')
+  $cn_split = split($cert_name,'\.')
+  $domain   = join(delete_at($cn_split, 0), '.')
 
   # take last part as country (only works for 2 lettered TLDs)
-  if member(['COM','ORG','NET'], upcase($fqdn_split[-1])) {
+  if member(['COM','ORG','NET'], upcase($cn_split[-1])) {
     $country = 'US'
   } else {
-    $country = upcase($fqdn_split[-1])
+    $country = upcase($cn_split[-1])
   }
   # take second part to be organization (such that .co.uk etc work as well)
-  $organization  = $fqdn_split[1]
-  $email_address = "root@${::domain}"
+  $organization  = $cn_split[1]
+  $email_address = "root@${domain}"
 
   if str2bool($wildcard) {
 
-    ssl::self_signed_certificate { $::fqdn:
-      common_name      => $::fqdn,
+    ssl::self_signed_certificate { $cert_name:
+      common_name      => $cert_name,
       email_address    => $email_address,
       country          => $country,
       organization     => $organization,
@@ -67,8 +68,8 @@ class ssl (
 
   } else {
 
-    ssl::self_signed_certificate { $::fqdn:
-      common_name   => $::fqdn,
+    ssl::self_signed_certificate { $cert_name:
+      common_name   => $cert_name,
       email_address => $email_address,
       country       => $country,
       organization  => $organization,
