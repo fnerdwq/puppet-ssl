@@ -65,6 +65,7 @@ define ssl::generate_dh_key (
     command => "openssl dhparam -out ${basename}.pem -${generator} ${numbits}",
     creates => "${basename}.pem",
     path    => ['/usr/bin'],
+    before  => "${basename}.pem"
   }
   file {"${basename}.pem":
     mode  => '0644',
