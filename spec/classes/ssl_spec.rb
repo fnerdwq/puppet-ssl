@@ -7,15 +7,15 @@ describe 'ssl' do
 
 
 
-    context 'node with long FQDN "test.example.co.uk"' do
-      let(:node) { 'test.example.co.uk' }
+    context 'node with long FQDN "testhost.example.co.uk"' do
+      let(:node) { 'testhost.example.co.uk' }
 
       it {
         should contain_file("/tmp/#{node}.cnf").with_content(/^O =  example$/)
       }
     end
-    context 'node with three letter TLD "test.example.com"' do
-      let(:node) { 'test.example.com' }
+    context 'node with three letter TLD "testhost.example.com"' do
+      let(:node) { 'testhost.example.com' }
 
       it {
         should contain_file("/tmp/#{node}.cnf").with_content(/^C = US$/)

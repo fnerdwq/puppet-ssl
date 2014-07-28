@@ -45,8 +45,8 @@ class ssl (
   $fqdn_split = split($::fqdn,'\.')
 
   # take last part as country (only works for 2 lettered TLDs)
-  if member(['COM','ORG'], upcase($fqdn_split[-1])) {
-    $country = 'US' 
+  if member(['COM','ORG','NET'], upcase($fqdn_split[-1])) {
+    $country = 'US'
   } else {
     $country = upcase($fqdn_split[-1])
   }
