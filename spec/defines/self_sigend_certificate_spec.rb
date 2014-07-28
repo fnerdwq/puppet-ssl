@@ -14,14 +14,10 @@ describe 'ssl::self_signed_certificate' do
     it { should contain_file(directory).with_ensure('directory') }
 
     it { should contain_file("#{directory}/#{node}.cnf").with(
-        'content' => /^CN = #{node}a$/
+        'content' => /^CN = #{node}$/
       )
     }
 
-    it { should contain_exec("#{directory}/#{title}.cnf").with(
-        'content' => /^CN = #{node}a$/
-      )
-    }
   end
 
 end
