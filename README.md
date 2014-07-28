@@ -1,6 +1,8 @@
-#puppet-ssl
+# Puppet SSL Module
 
 ####Table of Contents
+
+[![Build Status](https://travis-ci.org/fnerdwq/puppet-ssl.svg?branch=master)](https://travis-ci.org/fnerdwq/puppet-ssl)
 
 1. [Overview](#overview)
 2. [Module Description](#module-description)
@@ -63,6 +65,7 @@ Debian and RedHat like systems.
 Tested on:
 
 * Debian 7
+* Ubuntu 12.04
 * Centos 6.x
 
 Puppet Version >= 3.4.0, due to specific hiera usage.
