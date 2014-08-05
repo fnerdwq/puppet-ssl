@@ -19,7 +19,7 @@ describe 'ssl' do
       let(:node) { 'testhost.example.co.uk' }
 
       it {
-        should contain_file("/tmp/#{node}.cnf").with_content(/^O =  example$/)
+        should contain_file("/tmp/#{node}.cnf").with_content(/^O = example$/)
       }
     end
     context 'node with three letter TLD "testhost.example.com"' do

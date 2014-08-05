@@ -35,7 +35,7 @@ describe 'ssl::self_signed_certificate' do
       should contain_file("#{directory}/#{node}.cnf").with_content(/^C = DE$/)
     }
     it {
-      should contain_file("#{directory}/#{node}.cnf").with_content(/^O =  example$/)
+      should contain_file("#{directory}/#{node}.cnf").with_content(/^O = example$/)
     }
   end
 
