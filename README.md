@@ -17,6 +17,7 @@
 ##Overview
 
 This small ssl module creates a self signed ssl certificate.
+It can also create DH parameters.
 
 Written for Puppet >= 3.4.0.
 
@@ -29,6 +30,7 @@ See [Overview](#overview) for now.
 ###What Ssl affects
 
 * Creation of ssl certificates with openssl.
+* Creation of DH Parameters.
 
 ###Setup Requirements
 
@@ -41,7 +43,6 @@ Simply include it and you will get a simple self signed certificate for your $::
 ##Usage
 
 Just include the module by 
-
 ```puppet
 include ssl
 ```
@@ -58,6 +59,8 @@ ssl::self_signed_certficate { $::fqdn:
   subject_alt_name => "DNS:*.${::domain}, DNS:${::domain}",
 }
 ```
+
+For the creation of DH parameters, look at the defined type ``generate_dh_key``.
 
 ##Limitations:
 
