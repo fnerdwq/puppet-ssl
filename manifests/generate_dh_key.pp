@@ -47,8 +47,8 @@ define ssl::generate_dh_key (
   $owner            = root,
   $group            = root,
 ) {
-#  validate_re($numbits, ['^\d+$'])
-#  validate_re($generator, ['^2$','^5$'])
+  validate_re($numbits, ['^\d+$'])
+  validate_re($generator, ['^2$','^5$'])
   validate_absolute_path($directory)
   validate_string($owner)
   validate_string($group)
