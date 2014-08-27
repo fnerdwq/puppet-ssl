@@ -2,7 +2,7 @@
   "name": "fnerdwq-ssl",
   "version": "0.0.4",
   "author": "Frederik Wagner",
-  "summary": "Puppet module for ssl",
+  "summary": "Puppet module managning self sigend certs/DH params",
   "license": "Apache License, Version 2.0",
   "source": "https://github.com/fnerdwq/puppet-ssl.git",
   "project_page": "https://github.com/fnerdwq/puppet-ssl",
