@@ -61,6 +61,18 @@
 #   Group of files.
 #   *Optional* (defaults to root)
 #
+# [*check*]
+#   Add certificate validation check for check_mk/OMD.
+#   *Optional* (defaults to false)
+#
+# [*check_warn*]
+#   Seconds to certificate expiry, when to warn.
+#   *Optional* (defaults to undef => default)
+#
+# [*check_crit*]
+#   Seconds to certificate expiry, when critical.
+#   *Optional* (defaults to undef => default)
+#
 #
 # === Examples
 #
@@ -88,6 +100,9 @@ define ssl::self_signed_certificate (
   $directory        = '/etc/ssl',
   $owner            = root,
   $group            = root,
+  $check            = false,
+  $check_warn       = undef,
+  $check_crit       = undef,
 ) {
 
   if ! is_domain_name($common_name) {
@@ -104,6 +119,8 @@ define ssl::self_signed_certificate (
   validate_absolute_path($directory)
   validate_string($owner)
   validate_string($group)
+  validate_bool($check)
+  # no need to validet $check_* here
 
   include ssl::install
 
@@ -149,6 +166,15 @@ define ssl::self_signed_certificate (
     mode  => '0644',
     owner => $owner,
     group => $group,
+  }
+
+  if $check {
+    omd::client::checks::cert {$name:
+      path    => "${basename}.crt",
+      crit    => $check_crit,
+      warn    => $check_warn,
+      require => File["${basename}.crt"],
+    }
   }
 
 }

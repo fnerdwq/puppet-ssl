@@ -12,6 +12,8 @@
     "ssl",
     "openssl",
     "apache",
+    "nginx",
+    "webserver",
     "certificate"
   ],
   "requirements": [
@@ -49,6 +51,10 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 3.2.1"
+    }
+    {
+      "name": "fnerdwq/omd",
+      "version_requirement": ">= 0.2.0"
     }
   ]
 }
