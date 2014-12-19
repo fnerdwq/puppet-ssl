@@ -12,6 +12,13 @@ group :development, :test do
   gem 'beaker'
   gem 'beaker-rspec'
   gem 'pry'
+
+  if RUBY_VERSION <= '1.9.0'
+    gem 'activesupport', '< 4.0.0'
+    gem 'nokogiri', '< 1.6.0'
+    gem 'mime-types', '< 2.0.0'
+  end
 end
 
 gem 'puppet', puppetversion
+
