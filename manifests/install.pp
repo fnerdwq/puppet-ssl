@@ -1,4 +1,4 @@
 # installs openssl (private)
 class ssl::install {
-  ensure_resource('package', 'openssl', {'ensure' => 'latest' })
+  if ! defined(Package['openssl']) { package { 'openssl': ensure => installed } }
 }
