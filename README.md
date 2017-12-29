@@ -49,7 +49,7 @@ include ssl
 
 If you want to create more certificates or have special configurations to do, use the define:
 ```puppet
-ssl::self_signed_certficate { $::fqdn:
+ssl::self_signed_certificate { $::fqdn:
   common_name      => $::fqdn,
   email_address    => 'root@example.de',
   country          => 'DE',
